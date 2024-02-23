@@ -6,6 +6,7 @@ import SimpleRenderer from '@arcgis/core/renderers/SimpleRenderer';
 import {
   TextSymbol3DLayer,
   LabelSymbol3D,
+  SimpleLineSymbol,
   PolygonSymbol3D,
   ExtrudeSymbol3DLayer,
   PointSymbol3D,
@@ -19,7 +20,7 @@ import PopupTemplate from '@arcgis/core/PopupTemplate';
 /* Standalone table for Dates */
 export const dateTable = new FeatureLayer({
   portalItem: {
-    id: '68fe46f717f94218a9adcbc1dfb908b7',
+    id: 'b2a118b088a44fa0a7a84acbe0844cb2',
     portal: {
       url: 'https://gis.railway-sector.com/portal',
     },
@@ -54,12 +55,12 @@ var chainageRenderer = new SimpleRenderer({
 
 export const chainageLayer = new FeatureLayer({
   portalItem: {
-    id: '299f80a1d0844e109dcf354f9463f6b4',
+    id: 'e09b9af286204939a32df019403ef438',
     portal: {
       url: 'https://gis.railway-sector.com/portal',
     },
   },
-  layerId: 5,
+  layerId: 2,
   title: 'Chainage',
   elevationInfo: {
     mode: 'relative-to-ground',
@@ -117,12 +118,12 @@ let stationBoxRenderer = new UniqueValueRenderer({
 
 export const stationBoxLayer = new FeatureLayer({
   portalItem: {
-    id: '299f80a1d0844e109dcf354f9463f6b4',
+    id: 'e09b9af286204939a32df019403ef438',
     portal: {
       url: 'https://gis.railway-sector.com/portal',
     },
   },
-  layerId: 3,
+  layerId: 7,
   renderer: stationBoxRenderer,
   minScale: 150000,
   maxScale: 0,
@@ -135,16 +136,19 @@ export const stationBoxLayer = new FeatureLayer({
 });
 
 /* ROW Layer */
+var prowRenderer = new SimpleRenderer({
+  symbol: new SimpleLineSymbol({
+    color: '#ff0000',
+    width: '2px',
+  }),
+});
+
 export const prowLayer = new FeatureLayer({
-  portalItem: {
-    id: '299f80a1d0844e109dcf354f9463f6b4',
-    portal: {
-      url: 'https://gis.railway-sector.com/portal',
-    },
-  },
-  layerId: 1,
+  url: 'https://gis.railway-sector.com/server/rest/services/SC_Alignment/FeatureServer/5',
+  layerId: 5,
   title: 'PROW',
   popupEnabled: false,
+  renderer: prowRenderer,
 });
 prowLayer.listMode = 'hide';
 
@@ -180,12 +184,12 @@ let pnrRenderer = new UniqueValueRenderer({
 
 export const pnrLayer = new FeatureLayer({
   portalItem: {
-    id: '22487e1faf3c4eda82f99bf6acbbf62b',
+    id: '99500faf0251426ea1df934a739faa6f',
     portal: {
       url: 'https://gis.railway-sector.com/portal',
     },
   },
-  layerId: 18,
+  layerId: 1,
   title: 'Land (PNR)',
   definitionExpression:
     "LandOwner IN ('BASES CONVERSION DEVELOPMENT AUTHORITY','MANILA RAILROAD COMPANY')",
@@ -266,12 +270,12 @@ var labelClass = new LabelClass({
 
 export const stationLayer = new FeatureLayer({
   portalItem: {
-    id: '299f80a1d0844e109dcf354f9463f6b4',
+    id: 'e09b9af286204939a32df019403ef438',
     portal: {
       url: 'https://gis.railway-sector.com/portal',
     },
   },
-  layerId: 2,
+  layerId: 6,
   title: 'SC Stations',
   labelingInfo: [labelClass],
   elevationInfo: {
@@ -359,12 +363,12 @@ let lotDefaultSymbol = new SimpleFillSymbol({
 
 export const lotLayer = new FeatureLayer({
   portalItem: {
-    id: '22487e1faf3c4eda82f99bf6acbbf62b',
+    id: '99500faf0251426ea1df934a739faa6f',
     portal: {
       url: 'https://gis.railway-sector.com/portal',
     },
   },
-  layerId: 14,
+  layerId: 1,
   definitionExpression: 'ContSubm = 1',
   labelsVisible: false,
   title: 'Land Acquisition',
@@ -601,12 +605,12 @@ const structureRenderer = new UniqueValueRenderer({
 
 export const structureLayer = new FeatureLayer({
   portalItem: {
-    id: '22487e1faf3c4eda82f99bf6acbbf62b',
+    id: '99500faf0251426ea1df934a739faa6f',
     portal: {
       url: 'https://gis.railway-sector.com/portal',
     },
   },
-  layerId: 16,
+  layerId: 2,
   definitionExpression: 'ContSubm = 1',
   title: 'Structure Basic Plan',
   renderer: structureRenderer,
@@ -712,12 +716,12 @@ let lotPriorityRenderer = new UniqueValueRenderer({
 
 export const priorityLayer = new FeatureLayer({
   portalItem: {
-    id: '22487e1faf3c4eda82f99bf6acbbf62b',
+    id: '99500faf0251426ea1df934a739faa6f',
     portal: {
       url: 'https://gis.railway-sector.com/portal',
     },
   },
-  layerId: 8,
+  layerId: 1,
   renderer: lotPriorityRenderer,
   labelingInfo: [priorityLabel],
   definitionExpression: 'ContSubm = 1',
@@ -806,12 +810,12 @@ const barangayRenderer = new UniqueValueRenderer({
 
 export const barangayLayer = new FeatureLayer({
   portalItem: {
-    id: '22487e1faf3c4eda82f99bf6acbbf62b',
+    id: '99500faf0251426ea1df934a739faa6f',
     portal: {
       url: 'https://gis.railway-sector.com/portal',
     },
   },
-  layerId: 13,
+  layerId: 5,
   renderer: barangayRenderer,
   outFields: ['*'],
   title: 'Barangay',
@@ -919,7 +923,7 @@ const pierHeadRenderer = new UniqueValueRenderer({
 
 export const pierHeadColumnLayer = new FeatureLayer({
   portalItem: {
-    id: '299f80a1d0844e109dcf354f9463f6b4',
+    id: 'e09b9af286204939a32df019403ef438',
     portal: {
       url: 'https://gis.railway-sector.com/portal',
     },
@@ -1073,12 +1077,12 @@ const pierAccessDateMissingLabel = new LabelClass({
 export const pierAccessLayer = new FeatureLayer(
   {
     portalItem: {
-      id: '299f80a1d0844e109dcf354f9463f6b4',
+      id: 'e09b9af286204939a32df019403ef438',
       portal: {
         url: 'https://gis.railway-sector.com/portal',
       },
     },
-    layerId: 6,
+    layerId: 3,
     labelingInfo: [pierAccessReadyDateLabel, pierAccessNotYetLabel, pierAccessDateMissingLabel], //[pierAccessDateMissingLabel, pierAccessReadyDateLabel, pierAccessNotYetLabel],
     title: 'Pier with Access Date',
     minScale: 150000,
