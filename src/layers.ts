@@ -69,7 +69,7 @@ export const chainageLayer = new FeatureLayer({
   minScale: 150000,
   maxScale: 0,
   renderer: chainageRenderer,
-  outFields: ['*'],
+
   popupEnabled: false,
 });
 
@@ -128,7 +128,7 @@ export const stationBoxLayer = new FeatureLayer({
   minScale: 150000,
   maxScale: 0,
   title: 'Station Box',
-  outFields: ['*'],
+
   popupEnabled: false,
   elevationInfo: {
     mode: 'on-the-ground',
@@ -193,7 +193,7 @@ export const pnrLayer = new FeatureLayer({
   title: 'Land (PNR)',
   definitionExpression:
     "LandOwner IN ('BASES CONVERSION DEVELOPMENT AUTHORITY','MANILA RAILROAD COMPANY')",
-  outFields: ['*'],
+
   elevationInfo: {
     mode: 'on-the-ground',
   },
@@ -614,7 +614,7 @@ export const structureLayer = new FeatureLayer({
   definitionExpression: 'ContSubm = 1',
   title: 'Structure Basic Plan',
   renderer: structureRenderer,
-  outFields: ['*'],
+
   elevationInfo: {
     mode: 'on-the-ground',
   },
@@ -817,7 +817,7 @@ export const barangayLayer = new FeatureLayer({
   },
   layerId: 5,
   renderer: barangayRenderer,
-  outFields: ['*'],
+
   title: 'Barangay',
   elevationInfo: {
     mode: 'on-the-ground',
@@ -931,7 +931,7 @@ export const pierHeadColumnLayer = new FeatureLayer({
   layerId: 4,
   title: 'Pier Head/Column',
   definitionExpression: "Layer <> 'Pier_Head'",
-  outFields: ['*'],
+
   minScale: 150000,
   maxScale: 0,
   renderer: pierHeadRenderer,
@@ -1087,7 +1087,7 @@ export const pierAccessLayer = new FeatureLayer(
     title: 'Pier with Access Date',
     minScale: 150000,
     maxScale: 0,
-    outFields: ['*'],
+
     elevationInfo: {
       mode: 'on-the-ground',
     },
@@ -1169,7 +1169,6 @@ function dateFormat(inputDate: any, format: any) {
 
 // Custom Popup Content for pierAccessLayer
 let customContent = new CustomContent({
-  outFields: ['*'],
   creator: function (event: any) {
     // Extract AsscessDate of clicked pierAccessLayer
     const statsDate = event.graphic.attributes.AccessDate;
@@ -1198,7 +1197,6 @@ let customContent = new CustomContent({
 });
 
 const template = new PopupTemplate({
-  outFields: ['*'],
   title: 'Pier No: <b>{PIER}</b>',
   lastEditInfoEnabled: false,
   content: [customContent],
